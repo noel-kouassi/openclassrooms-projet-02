@@ -11,49 +11,21 @@ import {Olympic} from "../models/Olympic";
 })
 export class OlympicService {
   private olympicUrl = './assets/mock/olympic.json';
-  public loading : boolean = false;
-  public olympics : Olympic[] = [];
-  public errorMessage : string | null = null;
 
   constructor(private httpClient: HttpClient) {}
 
-  public loadInitialData() {
-
-    let chart = am4core.create("chartdiv", am4charts.PieChart);
-    this.loading = true;
-
-    this.getOlympics().subscribe({
-      next: (data) => {
-
-        data.forEach(olympic => {
-          let olympicStat: Olympic;
-          let medalsStat = olympic.participations.
-          flatMap(participation => participation.medalsCount).
-          reduce((a,b) => a+b, 0);
-          olympicStat = olympic;
-          olympicStat.totalMedalsCount = medalsStat;
-          this.olympics.push(olympicStat);
-        });
-        chart.data = this.olympics;
-        this.loading = false;
-      },
-      error: (error) => {
-        this.errorMessage = error;
-        this.loading = false;
-      }
-    });
-
-    let pieSeries = chart.series.push(new am4charts.PieSeries());
-    chart.radius = am4core.percent(90);
-
-    pieSeries.dataFields.value = "totalMedalsCount";
-    pieSeries.dataFields.category = "country";
-    pieSeries.labels.template.text = "{category}";
-    pieSeries.slices.template.tooltipText = "{category}\n{value.value}";
-  }
-
   public getOlympics(): Observable<Olympic[]> {
     return this.httpClient.get<Olympic[]>(this.olympicUrl).pipe(catchError(this.handleError));
+  }
+
+  public getOlympicsWithStat(olympicsData :Olympic[]): Olympic[] {
+
+    let olympics : Olympic[] = [];
+    olympicsData.forEach(olympic => {
+      olympic.totalMedalsCount = olympic.participations.flatMap(participation => participation.medalsCount).reduce((a, b) => a + b, 0);
+      olympics.push(olympic);
+    });
+    return olympics;
   }
 
   public handleError(error : HttpErrorResponse): Observable<never> {

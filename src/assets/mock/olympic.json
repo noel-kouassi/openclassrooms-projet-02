@@ -24,7 +24,8 @@
         "medalsCount": 40,
         "athleteCount": 381
       }
-    ]
+    ],
+    "color": "#8B4513"
   },
   {
     "id": 2,
@@ -51,7 +52,8 @@
         "medalsCount": 17,
         "athleteCount": 321
       }
-    ]
+    ],
+    "color": "#B0C4DE"
   },
   {
     "id": 3,
@@ -78,7 +80,8 @@
         "medalsCount": 113,
         "athleteCount": 626
       }
-    ]
+    ],
+    "color": "#6495ED"
   },
   {
     "id": 4,
@@ -105,7 +108,8 @@
         "medalsCount": 37,
         "athleteCount": 425
       }
-    ]
+    ],
+    "color": "#800000"
   },
   {
     "id": 5,
@@ -132,6 +136,7 @@
         "medalsCount": 33,
         "athleteCount": 403
       }
-    ]
+    ],
+    "color": "#808080"
   }
 ]

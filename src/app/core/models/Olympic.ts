@@ -6,4 +6,5 @@ export interface Olympic {
   participations : Array<Participation>;
   totalMedalsCount? : number;
   totalAthleteCount? : number;
+  color? : string;
 }
