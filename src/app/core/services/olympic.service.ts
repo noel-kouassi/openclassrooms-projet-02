@@ -1,6 +1,6 @@
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable, throwError} from 'rxjs';
+import {Observable, throwError, of} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
@@ -11,6 +11,7 @@ import {Olympic} from "../models/Olympic";
 })
 export class OlympicService {
   private olympicUrl = './assets/mock/olympic.json';
+  public olympics : Olympic[] = [] as Olympic[];
 
   constructor(private httpClient: HttpClient) {}
 
@@ -23,9 +24,14 @@ export class OlympicService {
     let olympics : Olympic[] = [];
     olympicsData.forEach(olympic => {
       olympic.totalMedalsCount = olympic.participations.flatMap(participation => participation.medalsCount).reduce((a, b) => a + b, 0);
+      olympic.totalAthleteCount = olympic.participations.flatMap(participation => participation.athleteCount).reduce((a, b) => a + b, 0);
       olympics.push(olympic);
     });
     return olympics;
+  }
+
+  public getParticipationByCountry(olympics: Olympic[], id: number | undefined): Olympic{
+    return olympics.filter((olympic) => olympic.id == id)[0];
   }
 
   public handleError(error : HttpErrorResponse): Observable<never> {
