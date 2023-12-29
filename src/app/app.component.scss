@@ -1,0 +1,75 @@
+.number-of-edition {
+  border-radius: 15px;
+  font-family: Verdana, sans-serif;
+  display: inline-block;
+  border: 3px solid teal;
+  width: 25%;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+  margin-right: 5%;
+}
+
+.number-of-countries {
+  border-radius: 15px;
+  font-family: Verdana, sans-serif;
+  display: inline-block;
+  border: 3px solid teal;
+  width: 25%;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+  margin-left: 5%;
+}
+
+.main-statistics {
+  text-align: center;
+  border: 1px none white;
+  margin: auto;
+  padding: 1rem 1rem;
+  width: 50%;
+}
+
+.main-chart {
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  #chart-div {
+    width: 60%;
+    height: 400px;
+    margin: auto;
+  }
+
+  .number-of-edition {
+    border-radius: 15px;
+    font-family: Verdana, sans-serif;
+    display: inline-block;
+    border: 3px solid teal;
+    width: 30%;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    margin-right: 5%;
+  }
+
+  .number-of-countries {
+    border-radius: 15px;
+    font-family: Verdana, sans-serif;
+    display: inline-block;
+    border: 3px solid teal;
+    width: 30%;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    margin-left: 5%;
+  }
+
+  .main-statistics {
+    text-align: center;
+    border: 1px none white;
+    margin: auto;
+    padding: 1rem 1rem;
+    width: 100%;
+  }
+
+  .main-chart {
+    width: 80%;
+  }
+}

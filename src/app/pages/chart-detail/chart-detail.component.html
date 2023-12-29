@@ -1,15 +1,17 @@
-<div id="main-title">{{nameOfTheCountry}}</div>
+<div id="main-title">{{ nameOfTheCountry }}</div>
 <div style="text-align: center; border: 1px none white; margin: auto; padding: 1rem 1rem; width: 100%;">
-  <div style="border-radius: 15px;font-family: Verdana, sans-serif; display: inline-block; border: 3px solid teal; width: 15%; padding: 1rem 1rem;vertical-align: middle;margin-right: 1%">Number of entries<br>
-    <div style="text-align: center; font-family: Verdana, sans-serif;"><b>{{numberOfEntries}}</b></div>
+  <div id="number-of-entries">Number of entries<br>
+    <div style="text-align: center; font-family: Verdana, sans-serif;"><b>{{ numberOfEntries }}</b></div>
   </div>
-  <div style="border-radius: 15px;font-family: Verdana, sans-serif; display: inline-block; border: 3px solid teal; width: 15%; padding: 1rem 1rem;vertical-align: middle;margin-right: 1%; margin-left: 1%">Total number medals<br>
-    <div style="text-align: center; font-family: Verdana, sans-serif;"><b>{{totalNumberMedals}}</b></div>
+  <div id="total-number-medals">Total number medals<br>
+    <div style="text-align: center; font-family: Verdana, sans-serif;"><b>{{ totalNumberMedals }}</b></div>
   </div>
-  <div style="border-radius: 15px;font-family: Verdana, sans-serif; display: inline-block; border: 3px solid teal; width: 15%; padding: 1rem 1rem;vertical-align: middle;margin-left: 1%">Total number of athletes<br>
-    <div style="text-align: center; font-family: Verdana, sans-serif;"><b>{{totalNumberAthletes}}</b></div>
+  <div id="total-numbers-athletes">Total number of athletes<br>
+    <div style="text-align: center; font-family: Verdana, sans-serif;"><b>{{ totalNumberAthletes }}</b></div>
   </div>
 </div>
 <div id="chart-div-detail" style="font-family: Verdana, sans-serif"></div>
-<button (click)="goBack()" style="font-size: x-large;font-style: normal;border: 1px none white; border-radius: 15px; width: 70px; height: 50px; text-align: center; font-family: Verdana, sans-serif; background-color: teal; color: white">Back
+<button (click)="goBack()"
+        style="font-size: x-large;font-style: normal;border: 1px none white; border-radius: 15px; width: 70px; height: 50px; text-align: center; font-family: Verdana, sans-serif; background-color: teal; color: white">
+  Back
 </button>

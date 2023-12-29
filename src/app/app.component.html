@@ -1,1 +1,20 @@
-<router-outlet></router-outlet>
+<ng-container *ngIf="isOnline; else offline">
+  <router-outlet></router-outlet>
+</ng-container>
+
+<ng-template #offline>
+  <div class="main-title">Global statistics</div>
+  <div class="main-statistics">
+    <div class="number-of-edition">Number of JOs <br>
+      <div style="text-align: center; font-family: Verdana, sans-serif;"><b>{{ numberOfEdition }}</b></div>
+    </div>
+    <div class="number-of-countries">Number of countries<br>
+      <div style="text-align: center; font-family: Verdana, sans-serif;"><b>{{ numberOfCountries }}</b></div>
+    </div>
+  </div>
+  <div style="align-content: center">
+    <h1 style="text-align: center">You are offline</h1>
+    <p style="text-align: center">Please check your internet connection.</p>
+    <p style="text-align: center">We will provide you only general statistics for the moment</p>
+  </div>
+</ng-template>

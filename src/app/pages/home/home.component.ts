@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { OlympicService } from 'src/app/core/services/olympic.service';
+import {Component, OnInit} from '@angular/core';
+import {OlympicService} from 'src/app/core/services/olympic.service';
 import {Olympic} from "../../core/models/Olympic";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import {Router} from "@angular/router";
+import {NetworkService} from "../../core/services/network.service";
+import {StorageService} from "../../core/services/storage.service";
 
 @Component({
   selector: 'app-home',
@@ -11,24 +13,25 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  public loading : boolean = false;
-  public errorMessage : string | null = null;
-  public numberOfCountries! : number;
-  public numberOfEdition! : number;
+  public loading: boolean = false;
+  public errorMessage: string | null = null;
+  public numberOfCountries!: number;
+  public numberOfEdition!: number;
 
-  constructor(private olympicService: OlympicService, private router: Router) {}
+  constructor(private storageService: StorageService, private networkService: NetworkService, private olympicService: OlympicService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.loadInitialData();
   }
 
-  public getNumberOfCountries(olympicsData : Olympic[]): number {
+  public getNumberOfCountries(olympicsData: Olympic[]): number {
     return olympicsData.length;
   }
 
-  public getNumberOfEditions(olympicsData : Olympic[]): number {
-    let participationYears : Set<number> = new Set<number>();
-    olympicsData.forEach( data => {
+  public getNumberOfEditions(olympicsData: Olympic[]): number {
+    let participationYears: Set<number> = new Set<number>();
+    olympicsData.forEach(data => {
       data.participations.forEach(participation => {
         participationYears.add(participation.year);
       })
@@ -36,14 +39,14 @@ export class HomeComponent implements OnInit {
     return participationYears.size;
   }
 
-  public fillOlympicsData(olympicsData : Olympic[]): void {
+  public fillOlympicsData(olympicsData: Olympic[]): void {
     olympicsData.forEach(data => {
       this.olympicService.olympics.push(data);
     });
   }
 
-  public loadInitialData(): void{
-    let chart = am4core.create("chartdiv", am4charts.PieChart);
+  public loadInitialData(): void {
+    let chart = am4core.create("chart-div", am4charts.PieChart);
     this.loading = true;
 
     this.olympicService.getOlympics().subscribe({
@@ -52,6 +55,9 @@ export class HomeComponent implements OnInit {
         this.fillOlympicsData(chart.data);
         this.numberOfCountries = this.getNumberOfCountries(data);
         this.numberOfEdition = this.getNumberOfEditions(data);
+        this.storageService.clearItem();
+        this.storageService.setItem("numberOfCountries", this.numberOfCountries);
+        this.storageService.setItem("numberOfEdition", this.numberOfEdition);
         this.loading = false;
       },
       error: (error) => {
@@ -70,7 +76,7 @@ export class HomeComponent implements OnInit {
     pieSeries!.tooltip!.getFillFromObject = false;
     pieSeries!.tooltip!.background!.fill = am4core.color("#008080");
     pieSeries.slices.template.events.on("hit", (event) => {
-      let olympic : Olympic | undefined = event.target.dataItem?.dataContext as Olympic;
+      let olympic: Olympic | undefined = event.target.dataItem?.dataContext as Olympic;
       let id = olympic?.id;
       this.router.navigate(['/chart-detail', id]);
     });
