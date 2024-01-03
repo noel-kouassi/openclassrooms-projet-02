@@ -1,13 +1,9 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
 #main-title {
   display: block;
   width: 30%;
   height: 50px;
   background-color: teal;
-  font-family: Verdana, sans-serif ;
+  font-family: Verdana, sans-serif;
   font-style: normal;
   font-size: xx-large;
   color: white;
@@ -22,4 +18,102 @@ body {
   width: 75%;
   height: 400px;
   margin: auto;
+}
+
+#number-of-entries {
+  border-radius: 15px;
+  font-family: Verdana, sans-serif;
+  display: inline-block;
+  border: 3px solid teal;
+  width: 15%;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+  margin-right: 1%;
+}
+
+#total-number-medals {
+  border-radius: 15px;
+  font-family: Verdana, sans-serif;
+  display: inline-block;
+  border: 3px solid teal;
+  width: 15%;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+  margin-right: 1%;
+  margin-left: 1%;
+}
+
+#total-numbers-athletes {
+  border-radius: 15px;
+  font-family: Verdana, sans-serif;
+  display: inline-block;
+  border: 3px solid teal;
+  width: 15%;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+  margin-left: 1%;
+}
+
+@media only screen and (max-width: 700px) {
+  #chart-div-detail {
+    width: 100%;
+    height: 300px;
+    margin: auto;
+  }
+
+  #main-title {
+    display: block;
+    width: 30%;
+    height: 80px;
+    background-color: teal;
+    font-family: Verdana, sans-serif;
+    font-style: normal;
+    font-size: x-large;
+    color: white;
+    border-radius: 15px;
+    text-align: center;
+    margin: auto;
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+
+  #number-of-entries {
+    border-radius: 15px;
+    font-family: Verdana, sans-serif;
+    display: inline-block;
+    border: 3px solid teal;
+    width: 20%;
+    height: 90px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    margin-right: 1%;
+  }
+
+  #total-number-medals {
+    border-radius: 15px;
+    font-family: Verdana, sans-serif;
+    display: inline-block;
+    border: 3px solid teal;
+    width: 20%;
+    height: 90px;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    margin: 1%;
+  }
+
+  #total-numbers-athletes {
+    border-radius: 15px;
+    font-family: Verdana, sans-serif;
+    display: inline-block;
+    border: 3px solid teal;
+    width: 20%;
+    height: 90px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    margin-left: 1%;
+  }
 }

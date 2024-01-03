@@ -1,24 +1,80 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-#main-title {
-  display: block;
-  width: 30%;
-  height: 50px;
-  background-color: teal;
-  font-family: Verdana, sans-serif ;
-  font-style: normal;
-  font-size: xx-large;
-  color: white;
-  border-radius: 15px;
-  text-align: center;
-  margin: auto;
-  padding-top: 15px;
-  padding-bottom: 10px;
-}
-
-#chartdiv {
+#chart-div {
   width: 100%;
   height: 600px;
+}
+
+.number-of-edition {
+  border-radius: 15px;
+  font-family: Verdana, sans-serif;
+  display: inline-block;
+  border: 3px solid teal;
+  width: 25%;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+  margin-right: 2%;
+}
+
+.number-of-countries {
+  border-radius: 15px;
+  font-family: Verdana, sans-serif;
+  display: inline-block;
+  border: 3px solid teal;
+  width: 25%;
+  padding: 1rem 1rem;
+  vertical-align: middle;
+  margin-left: 2%;
+}
+
+.main-statistics {
+  text-align: center;
+  border: 1px none white;
+  margin: auto;
+  padding: 1rem 1rem;
+  width: 50%;
+}
+
+.main-chart {
+  width: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+  #chart-div {
+    width: 100%;
+    height: 300px;
+    margin-top: 1px;
+  }
+
+  .number-of-edition {
+    border-radius: 15px;
+    font-family: Verdana, sans-serif;
+    display: inline-block;
+    border: 3px solid teal;
+    width: 25%;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    margin-right: 1%;
+  }
+
+  .number-of-countries {
+    border-radius: 15px;
+    font-family: Verdana, sans-serif;
+    display: inline-block;
+    border: 3px solid teal;
+    width: 25%;
+    padding: 1rem 1rem;
+    vertical-align: middle;
+    margin-left: 1%;
+  }
+
+  .main-statistics {
+    text-align: center;
+    border: 1px none white;
+    margin: auto;
+    padding: 1rem 1rem;
+    width: 100%;
+  }
+
+  .main-chart {
+    width: 80%;
+  }
 }
