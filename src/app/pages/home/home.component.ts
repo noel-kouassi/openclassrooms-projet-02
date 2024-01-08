@@ -1,25 +1,27 @@
-import {Component, OnInit, HostListener } from '@angular/core';
+import {Component, OnInit, HostListener, OnDestroy} from '@angular/core';
 import {OlympicService} from 'src/app/core/services/olympic.service';
 import {Olympic} from "../../core/models/Olympic";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
-import {Router} from "@angular/router";
+import {Event, Router} from "@angular/router";
 import {NetworkService} from "../../core/services/network.service";
 import {StorageService} from "../../core/services/storage.service";
 import {LoadingService} from "../../core/services/loading.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   public loading: boolean = false;
   public errorMessage: string | null = null;
   public numberOfCountries!: number;
   public numberOfEdition!: number;
   public screenWidth!: number;
   private chartsData : Olympic[] | [] = [];
+  private subscription : Subscription = new Subscription();
 
   constructor(private storageService: StorageService, private networkService: NetworkService, private olympicService: OlympicService,
               private loadingService: LoadingService, private router: Router) {
@@ -63,7 +65,7 @@ export class HomeComponent implements OnInit {
     this.chartsData = this.storageService.getItem('chartsData');
 
     if(this.chartsData == null){
-      this.olympicService.getOlympics().subscribe({
+      this.subscription = this.olympicService.getOlympics().subscribe({
         next: (data) => {
           chart.data = this.olympicService.getOlympicsWithStat(data);
           this.numberOfCountries = this.getNumberOfCountries(data);
@@ -105,5 +107,9 @@ export class HomeComponent implements OnInit {
     }else{
       chart.radius = am4core.percent(80);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
