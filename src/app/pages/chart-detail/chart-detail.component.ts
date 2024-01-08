@@ -1,21 +1,23 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import {OlympicService} from "../../core/services/olympic.service";
 import {Olympic} from "../../core/models/Olympic";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-chart-detail',
   templateUrl: './chart-detail.component.html',
   styleUrls: ['./chart-detail.component.scss']
 })
-export class ChartDetailComponent implements OnInit {
+export class ChartDetailComponent implements OnInit, OnDestroy {
   public id!: number;
   public nameOfTheCountry: string = "Name of the country";
   public numberOfEntries!: number;
   public totalNumberMedals!: number | undefined;
   public totalNumberAthletes!: number | undefined;
+  private subscription : Subscription = new Subscription();
 
   constructor(private route: ActivatedRoute, private router: Router, private olympicService: OlympicService) {
   }
@@ -65,7 +67,7 @@ export class ChartDetailComponent implements OnInit {
     if (this.olympicService.olympics.length != 0) {
       olympics = this.olympicService.olympics;
     } else {
-      this.olympicService.getOlympics().subscribe({
+      this.subscription = this.olympicService.getOlympics().subscribe({
         next: (data) => {
           olympics = this.olympicService.getOlympicsWithStat(data);
         }
@@ -74,11 +76,15 @@ export class ChartDetailComponent implements OnInit {
     return olympics;
   }
 
-  public goBack() {
+  public goBack(): void {
     this.router.navigate(['/']);
   }
 
   public checkParamValidity(id: any): boolean {
     return !Number.isNaN(id);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
